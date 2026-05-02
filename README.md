@@ -14,16 +14,13 @@ Next catchable: bus 14 in 13 min (08:59 am), buffer 6 min
 
 ## Screenshots
 
-Add screenshots here before opening the PR:
+<img width="1265" height="641" alt="image" src="https://github.com/user-attachments/assets/6908e7a5-8596-4bbe-9cb1-03b48fc0a286" />
 
-| Dashboard | Telegram Alert |
-| --- | --- |
-| `docs/screenshots/dashboard.png` | `docs/screenshots/telegram-alert.png` |
+<img width="1018" height="753" alt="image" src="https://github.com/user-attachments/assets/e59a26cc-22a9-42bd-bc7f-895f130e1b12" />
 
-Suggested captures:
-- The main dashboard with configured office/home trips.
-- A Telegram commute alert with the **Yes, I boarded** button.
-- Optional: two-bus transfer alert.
+<img width="426" height="490" alt="image" src="https://github.com/user-attachments/assets/0ba61300-4a3b-4523-b26d-c969e38d9970" />
+
+
 
 ## What It Does
 
@@ -36,7 +33,6 @@ Suggested captures:
 - Sends Telegram phone alerts from an always-on server.
 - Includes a **Yes, I boarded** Telegram button that silences more alerts for that trip for a few hours.
 - Saves commute settings on the server in `data/settings.json`.
-- Still works with demo arrivals when no LTA key is configured.
 
 ## How It Works
 
