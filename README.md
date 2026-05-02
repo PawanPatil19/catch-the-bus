@@ -15,6 +15,8 @@ Stop 09048. Walk 7 min. Buffer 2 min.
 Next catchable: bus 14 in 13 min (08:59 am), buffer 6 min
 ```
 
+<img width="732" height="279" alt="image" src="https://github.com/user-attachments/assets/78d3d787-0d0c-432e-93b4-b29b26d9a9dd" />
+
 
 
 
