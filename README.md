@@ -1,5 +1,8 @@
 # Catch the Bus
 
+<img width="1265" height="641" alt="image" src="https://github.com/user-attachments/assets/6908e7a5-8596-4bbe-9cb1-03b48fc0a286" />
+<br>
+
 Catch the Bus is a tiny Singapore commute copilot. It watches your usual office/home routes, checks live LTA bus arrivals, accounts for walking time, and nudges you only when there is a real decision to make.
 
 Instead of opening a bus app and doing mental math at the door, you get messages like:
@@ -12,13 +15,6 @@ Stop 09048. Walk 7 min. Buffer 2 min.
 Next catchable: bus 14 in 13 min (08:59 am), buffer 6 min
 ```
 
-## Screenshots
-
-<img width="1265" height="641" alt="image" src="https://github.com/user-attachments/assets/6908e7a5-8596-4bbe-9cb1-03b48fc0a286" />
-
-<img width="1018" height="753" alt="image" src="https://github.com/user-attachments/assets/e59a26cc-22a9-42bd-bc7f-895f130e1b12" />
-
-<img width="426" height="490" alt="image" src="https://github.com/user-attachments/assets/0ba61300-4a3b-4523-b26d-c969e38d9970" />
 
 
 
@@ -198,11 +194,14 @@ journalctl -u catch-the-bus -f
 ## UI Guide
 
 Configure:
+<img width="1018" height="753" alt="image" src="https://github.com/user-attachments/assets/e59a26cc-22a9-42bd-bc7f-895f130e1b12" />
 - **Office trip**: the bus stop/services used when going to office.
 - **Home trip**: the bus stop/services used when going home.
 - **Walk mins**: how long it takes to reach the first bus stop.
 - **Window mins**: how long before/after the leave time the server should watch.
 - **Add second bus**: enable transfer-aware checks.
+  <br>
+  <img width="426" height="490" alt="image" src="https://github.com/user-attachments/assets/0ba61300-4a3b-4523-b26d-c969e38d9970" />
 
 Use:
 - **Test phone alert** to verify Telegram credentials.
