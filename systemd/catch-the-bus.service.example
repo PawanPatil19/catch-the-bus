@@ -1,0 +1,16 @@
+[Unit]
+Description=Catch the Bus
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bb_user
+WorkingDirectory=/home/bb_user/catch_the_bus
+EnvironmentFile=/home/bb_user/catch_the_bus/.env
+ExecStart=/usr/bin/npm run start
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Catch the Bus</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="status-panel" aria-live="polite">
+        <div>
+          <h1>Catch the Bus</h1>
+        </div>
+        <div class="hero-grid">
+          <div>
+            <span class="metric-label">Next move</span>
+            <strong id="nextAction">Set up your commute</strong>
+          </div>
+          <div>
+            <span class="metric-label">Polling</span>
+            <strong id="pollStatus">Paused</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls">
+        <div class="toolbar" role="group" aria-label="Commute controls">
+          <button id="testPhoneBtn" type="button">Test phone alert</button>
+          <button id="testCommuteBtn" type="button">Test commute alert</button>
+          <button id="locationBtn" type="button">Enable location</button>
+          <button id="refreshBtn" type="button">Refresh now</button>
+          <label class="toggle">
+            <input id="autoPollToggle" type="checkbox" checked />
+            Auto-watch near leave times
+          </label>
+        </div>
+        <p id="dataSource" class="hint">Waiting for the next live arrival check.</p>
+      </section>
+
+      <section class="layout">
+        <form id="settingsForm" class="settings">
+          <div class="section-head">
+            <h2>Commutes</h2>
+            <span>Auto detection</span>
+          </div>
+          <div class="commute-block location-block">
+            <label class="toggle">
+              <input name="locationEnabled" type="checkbox" />
+              Use bus stops to detect home or office
+            </label>
+            <input name="homeLat" type="hidden" />
+            <input name="homeLng" type="hidden" />
+            <input name="officeLat" type="hidden" />
+            <input name="officeLng" type="hidden" />
+            <div class="toolbar location-actions">
+              <button id="saveHomeLocationBtn" type="button">Set home from To Office stop</button>
+              <button id="saveOfficeLocationBtn" type="button">Set office from To Home stop</button>
+            </div>
+            <div class="toolbar location-actions">
+              <button id="manualHomeBtn" type="button">I'm at home</button>
+              <button id="manualOfficeBtn" type="button">I'm at office</button>
+            </div>
+            <input name="locationRadius" type="hidden" />
+            <div id="currentLocation" class="location-readout hidden">Current location: not checked yet.</div>
+            <p id="locationStatus" class="hint"></p>
+          </div>
+          <div class="commute-block">
+            <h3>Office trip</h3>
+            <label class="stop-search">
+              Search bus stop
+              <input data-stop-search="office" data-target-stop="officeStop" placeholder="Orchard, City Hall, Tampines..." autocomplete="off" />
+              <div class="stop-results" data-stop-results="office" role="listbox"></div>
+            </label>
+            <label>
+              Bus stop code
+              <input name="officeStop" inputmode="numeric" autocomplete="off" />
+            </label>
+            <label>
+              Bus services
+              <input name="officeServices" placeholder="14, 65, 166" autocomplete="off" />
+            </label>
+            <div class="field-row">
+              <label>
+                Leave at
+                <input name="officeLeave" type="time" />
+              </label>
+              <label>
+                Walk mins
+                <input name="officeWalk" type="number" min="0" max="60" />
+              </label>
+              <label>
+                Window mins
+                <input name="officeWindow" type="number" min="5" max="180" />
+              </label>
+            </div>
+            <label class="toggle connection-toggle">
+              <input name="officeSecondEnabled" type="checkbox" />
+              Add second bus
+            </label>
+            <div class="connection-block">
+              <label class="stop-search">
+                Search transfer stop
+                <input data-stop-search="officeTransfer" data-target-stop="officeSecondStop" placeholder="Where you change buses..." autocomplete="off" />
+                <div class="stop-results" data-stop-results="officeTransfer" role="listbox"></div>
+              </label>
+              <label>
+                Transfer stop code
+                <input name="officeSecondStop" inputmode="numeric" autocomplete="off" />
+              </label>
+              <label>
+                Second bus services
+                <input name="officeSecondServices" placeholder="123, 502" autocomplete="off" />
+              </label>
+              <div class="field-row two-up">
+                <label>
+                  Ride mins to transfer
+                  <input name="officeRideToSecond" type="number" min="0" max="120" />
+                </label>
+                <label>
+                  Transfer walk mins
+                  <input name="officeTransferWalk" type="number" min="0" max="30" />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="commute-block">
+            <h3>Home trip</h3>
+            <label class="stop-search">
+              Search bus stop
+              <input data-stop-search="home" data-target-stop="homeStop" placeholder="Road, MRT, mall, landmark..." autocomplete="off" />
+              <div class="stop-results" data-stop-results="home" role="listbox"></div>
+            </label>
+            <label>
+              Bus stop code
+              <input name="homeStop" inputmode="numeric" autocomplete="off" />
+            </label>
+            <label>
+              Bus services
+              <input name="homeServices" placeholder="14, 65, 166" autocomplete="off" />
+            </label>
+            <div class="field-row">
+              <label>
+                Leave at
+                <input name="homeLeave" type="time" />
+              </label>
+              <label>
+                Walk mins
+                <input name="homeWalk" type="number" min="0" max="60" />
+              </label>
+              <label>
+                Window mins
+                <input name="homeWindow" type="number" min="5" max="180" />
+              </label>
+            </div>
+            <label class="toggle connection-toggle">
+              <input name="homeSecondEnabled" type="checkbox" />
+              Add second bus
+            </label>
+            <div class="connection-block">
+              <label class="stop-search">
+                Search transfer stop
+                <input data-stop-search="homeTransfer" data-target-stop="homeSecondStop" placeholder="Where you change buses..." autocomplete="off" />
+                <div class="stop-results" data-stop-results="homeTransfer" role="listbox"></div>
+              </label>
+              <label>
+                Transfer stop code
+                <input name="homeSecondStop" inputmode="numeric" autocomplete="off" />
+              </label>
+              <label>
+                Second bus services
+                <input name="homeSecondServices" placeholder="123, 502" autocomplete="off" />
+              </label>
+              <div class="field-row two-up">
+                <label>
+                  Ride mins to transfer
+                  <input name="homeRideToSecond" type="number" min="0" max="120" />
+                </label>
+                <label>
+                  Transfer walk mins
+                  <input name="homeTransferWalk" type="number" min="0" max="30" />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit">Save commute</button>
+        </form>
+
+        <section class="arrivals">
+          <div class="section-head">
+            <h2>Live Arrivals</h2>
+            <span id="lastUpdated">Never updated</span>
+          </div>
+          <div id="arrivalList" class="arrival-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
